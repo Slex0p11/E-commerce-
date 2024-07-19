@@ -1,0 +1,100 @@
+{% extends 'layouttail.html'%}
+{% load static %}
+
+
+{%block title %}
+<title>My Cart</title>
+{%endblock%}
+
+{% block main_content %}
+
+ 
+
+
+<div class="relative overflow-x-auto">
+    {%for msg in messages%} 
+    {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="flex justify-center">
+        <span class="bg-green-300 text-xl font-bold p-3 rounded-lg text-blue-500">
+        {{msg}} 
+        </span>
+    </div>
+    {% endif %}
+    {%if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <div class="flex justify-center">
+        <span class="bg-red-300 text-xl font-bold p-3 rounded-lg text-blue-500">
+            {{msg}} 
+        </span>
+    </div>
+
+    {%endif%}
+    {% endfor %}
+
+    <div class="flex justify-center">
+        <span class ="bg-primary_color text-purple-400 p-5 text-3xl text-center rounded-2xl font-bold">My Cart</span>
+
+    </div>
+     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mt-10">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Product name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Product Price
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Quantity
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Description
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Image
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Category
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in items %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{i.product.product_name}}
+                </th>
+                <td class="px-6 py-4">
+                    {{i.product.product_price}}
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+                <td class="px-6 py-4">
+                    {{i.product.description}}
+                </td>
+                <td class="px-6 py-4">
+                    <img src="/{{i.product.image}}" alt="{{i.product.product_name}}" class="w-44">
+                </td>
+                <td class="px-6 py-4">
+                    {{i.product.category}}
+                </td>
+                <td class="px-6 py-4">
+                    <a href="">
+                         Order Now
+                    </a>
+                    &nbsp; &nbsp;
+                    <a href="" onclick="return alert('Are you sure you want to delete this ?')">
+                        <button class=""></button>
+                        <i class="fa-solid fa-trash text-red-600 text-base" ></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+ 
+{% endblock %}
