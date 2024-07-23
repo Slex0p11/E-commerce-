@@ -1,3 +1,8 @@
+<style>
+form label{
+    display: none;
+}
+</style>
 {% extends 'layouttail.html'%}
 {% block title %}
 <title>Ecommerce | Homepage</title>
@@ -5,6 +10,16 @@
 
 {% block main_content %}
 
+
+<div class = "flex justify-start ms-5">
+    <form action="" method="GET">
+        <div class="flex flex-wrap">
+            {{product_filter.form}}
+        <input type="submit" value="Search" class="bg-blue-800 text-white rounded-lg px-3 ms-3">
+        </div>
+     
+    </form>
+</div>
 
 <div class = "flex justify-evenly flex-wrap">
 
