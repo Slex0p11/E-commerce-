@@ -1,0 +1,64 @@
+
+{% extends 'layouttail.html'%}
+{% load crispy_forms_tags %}
+{% block title %}
+<title>Ecommerce | User Profile</title>
+{% endblock %}
+
+{% block main_content %}
+<div class="container mx-auto p-6">
+  {%for msg in messages%} 
+                    {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    <div class="flex justify-center">
+                        <span class="bg-green-300 text-xl font-bold p-3 rounded-lg text-blue-500">
+                        {{msg}} 
+                        </span>
+                    </div>
+                    {% endif %}
+                     
+                    {% endfor %}
+    <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+      {% load static %}
+    <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+      <div class="bg-cover bg-center h-48" style="background-image: url('https://via.placeholder.com/800x400');"></div>
+      <div class="flex justify-center -mt-20">
+        <img class="w-32 h-32 rounded-full border-4 border-white" src="{%static 'img/silash.jpg'%}" alt="User Avatar">
+      </div>
+       
+      <div class="text-center mt-2">
+        <h2 class="text-3xl font-semibold text-gray-800">{{user.first_name}} {{user.last_name}}</h2>
+        <p class="text-gray-600">{{user.username}}</p>
+         
+    
+      </div>
+      <div class="p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+            <h3 class="text-lg font-medium text-gray-800">User Information</h3>
+            <ul class="mt-2 text-gray-600">
+              <li class="flex items-center mt-2">
+                <span class="font-semibold w-28">Email:</span>
+                <span>{{user.email}}</span>
+              </li>
+              <li class="flex items-center mt-2">
+                <span class="font-semibold w-28">First Name</span>
+                <span>{{user.first_name}}</span>
+              </li>
+              <li class="flex items-center mt-2">
+                <span class="font-semibold w-28">Last Name</span>
+                <span>{{user.last_name}}</span>
+              </li>
+            </ul>
+            </div>
+               
+        </div>
+        <div class="mt-5">
+          <a href="{% url 'profileupdate' %}">
+            <input type="submit" class="bg-green-600 px-3 py-2 text-white rounded-tr-xl rounded-bl-xl " value="Update Profile">
+          </a>
+         </div>  
+      </div>
+    </div>
+  </div>
+
+{% endblock %} 

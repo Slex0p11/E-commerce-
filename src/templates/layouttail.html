@@ -9,10 +9,10 @@
     {% endblock %}
 
      
-
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
-
+    
     <script>
         tailwind.config = {
           theme: {
@@ -26,9 +26,10 @@
           }
         }
       </script>
-    <link rel="stylesheet" href="{%static 'css/style.css'%}">  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />  
-    <link rel="shortcut icon" href="{%static 'img/logo.jpg' %}" type="image/x-icon">
+<link rel="stylesheet" href="{%static 'css/style.css'%}">  
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<link rel="shortcut icon" href="{%static 'img/logo.jpg' %}" type="image/x-icon">
  
 
 
@@ -54,7 +55,25 @@
                 </span>
               </svg>
               </a>
-            <a href="{% url 'logout' %}" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Logout</a>
+ 
+<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-10 h-10 rounded-full cursor-pointer" src="{% static  'img/silash.jpg' %}" alt="User dropdown">
+
+<!-- Dropdown menu -->
+<div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 "style="z-index: 100;">
+    <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+      <div>{{user.username}}</div>
+      <div class="font-medium truncate">{{user.email}}</div>
+    </div>
+    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+      <li>
+        <a href="{% url 'userprofile'%}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+      </li>
+       
+    </ul>
+    <div class="py-1">
+      <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+    </div>
+</div>
 
             {% else %}
             <a href="{% url 'register' %}" class="text-sm  text-text_color dark:text-white hover:underline text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Sign Up</a>

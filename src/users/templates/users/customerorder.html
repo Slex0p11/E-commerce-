@@ -1,11 +1,11 @@
-{% extends 'layouttail.html'%}
+{% extends 'admins/index.html'%}
 {% load static %}
 
 {% block title %}
-<title>My Order</title>
+<title>Customer's Order</title>
 {% endblock %}
 
-{% block main_content %}
+{% block admin_content %}
 
 <div class="relative overflow-x-auto">
     {% for msg in messages %} 
@@ -26,13 +26,19 @@
     {% endfor %}
 
     <div class="flex justify-center">
-        <span class="bg-primary_color text-purple-400 p-5 text-3xl text-center rounded-2xl font-bold">My Orders</span>
+        <span class="bg-primary_color text-purple-400 p-5 text-3xl text-center rounded-2xl font-bold">Customer's Order</span>
     </div>
 
     {% if order %}
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mt-10">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
+                <th scope="col" class="px-6 py-3">
+                    Address
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Customer name
+                </th>
                 <th scope="col" class="px-6 py-3">
                     Product name
                 </th>
@@ -51,12 +57,21 @@
                 <th scope="col" class="px-6 py-3">
                     Category
                 </th>
+                <th scope="col" class="px-6 py-3">
+                    Payment Status
+                </th>
                  
             </tr>
         </thead>
         <tbody>
             {% for o in order %}
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{o.address}}
+                </th>
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{o.user.username}}
+                </th>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {{o.product.product_name}}
                 </th>
@@ -75,7 +90,14 @@
                 <td class="px-6 py-4">
                     {{o.product.category}}
                 </td>
-                 
+
+                <td class="px-6 py-4">
+                    {% if o.payment_status == True%}
+                    <div class="text-green-300 font-bold">Completed</div>
+                    {% else %}
+                    <div class="text-red-300 font-bold">Incomplete</div>
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
         </tbody>

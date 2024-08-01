@@ -1,0 +1,50 @@
+<style>
+    small{
+        display: none;
+
+    }
+</style>
+
+{% extends 'layouttail.html'%}
+{% load crispy_forms_tags %}
+{% block title %}
+<title>Ecommerce | User  Profile Update Form</title>
+{% endblock %}
+
+{% block main_content %}
+<div class="bg-gray-50 font-[sans-serif]">
+    <div class="min-h-screen flex flex-col items-center justify-center py-6 px-4">
+      <div class="max-w-md w-full">
+         
+        <div class="p-8 rounded-2xl bg-white shadow">
+            {%for msg in messages%} 
+                    
+                    {%if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <div class="flex justify-center">
+                        <span class="bg-red-300 text-xl font-bold p-3 rounded-lg text-blue-500">
+                            {{msg}} 
+                        </span>
+                    </div>
+                
+                    {%endif%}
+                    {% endfor %}
+          <h2 class="text-gray-800 text-center text-2xl font-bold">User Profile Update Form</h2>
+          <form class="mt-8 space-y-4" method="POST">
+            {% csrf_token %}
+            {{form | crispy }}
+
+            
+
+            <div class="!mt-8">
+              <button type="submit" class="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+                Save User Profile
+              </button>
+            </div>
+           
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
